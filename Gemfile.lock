@@ -1,0 +1,33 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    artii (2.1.2)
+    base64 (0.1.0)
+    json (2.5.1)
+    pastel (0.8.0)
+      tty-color (~> 0.5)
+    securerandom (0.1.0)
+    tty-color (0.6.0)
+    tty-cursor (0.7.1)
+    tty-prompt (0.23.1)
+      pastel (~> 0.8)
+      tty-reader (~> 0.8)
+    tty-reader (0.9.0)
+      tty-cursor (~> 0.7)
+      tty-screen (~> 0.8)
+      wisper (~> 2.0)
+    tty-screen (0.8.1)
+    wisper (2.0.1)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  artii
+  base64
+  json
+  securerandom
+  tty-prompt
+
+BUNDLED WITH
+   2.2.28
