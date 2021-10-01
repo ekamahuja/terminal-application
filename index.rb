@@ -30,7 +30,7 @@ app = true
 while app === true 
     begin
         Menu.welcome
-        Utils.wait(1)
+        # Utils.wait(1)
         puts "\n"
         Menu.start_menu
     rescue => errorMessage
@@ -39,7 +39,3 @@ while app === true
 end
 
 
-
-
-# user = Account.new("firstone", "LASTasttest", "yrdy@gmail.com", "test123")
-# Utils.get_accounts

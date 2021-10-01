@@ -18,14 +18,17 @@ module Utils
         file = File.read("./storage/dataBase/accounts.json")
         data = file == "" ? [] : JSON.parse(file)
         data << account_data
-        File.write('./storage/dataBase/accounts.json', JSON.dump(data))
+        File.write('./storage/dataBase/accounts.json', JSON.pretty_generate(data))
     end
 
-
-    def Utils.get_amount_of_accounts
+    def Utils.fetch_accounts
         json = File.read("./storage/dataBase/accounts.json")
         accounts = JSON.parse(json)
-        return accounts.length
+        return accounts
+    end
+
+    def Utils.get_amount_of_accounts
+        return Utils.fetch_accounts.length
     end
 
 end

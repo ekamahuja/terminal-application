@@ -37,6 +37,13 @@ class Account
     end
 
 
+    # Authentications user
+    def self.login(email_or_user, password)
+        # email_or_user.downcase!
+        accounts = Utils.fetch_accounts
+    end
+
+
 
     
     # def self.data

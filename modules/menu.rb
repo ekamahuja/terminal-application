@@ -40,8 +40,18 @@ module Menu
             else 
                 Utils.clear_console
                 puts "Something went horribly wrong :/"
+                puts "Error Information: Invalid choice selected in menu module  - start_menu method"
                 exit(1)
         end
+    end
+
+
+    def Menu.login_account
+        prompt = TTY::Prompt.new
+        email_or_user = prompt.ask("Please enter your email or username: ")
+        password = prompt.mask("Please enter your password: ")
+
+        Account.login(email_or_user, password)
     end
     
     
@@ -58,11 +68,13 @@ module Menu
         if (password_one === passsword_two)
             password_confirmed = password_one
             account = Account.new(first_name, last_name, email, password_confirmed)
+            Utils.clear_console
             puts "Success! - Your account has been registed! :)"
+            puts "Your username is #{account.user_name} - **Please take note**"
         else 
             puts "Your passwords did not match, please re-enter your password"
         end
-        puts "#{first_name} -- #{last_name} -- #{email} -- #{password_confirmed}"
+        # puts "#{first_name} -- #{last_name} -- #{email} -- #{password_confirmed}"
     end
 
     
