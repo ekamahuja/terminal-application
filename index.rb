@@ -1,11 +1,9 @@
 # Import gems
 begin
     require "csv"
-    # require "colorize"
     require "tty-prompt"
     require "artii"
     require "base64"
-    require 'securerandom'
     require "json"
 rescue  LoadError
     puts "Please install all required gems via running 'bundle'"
@@ -13,22 +11,27 @@ rescue  LoadError
 end
 
 
-# Import files
-require_relative "modules/menu.rb"
-require_relative "modules/account.rb"
 
-# Import Modules
+# Import modules
+require_relative "./modules/menu"
+require_relative "./modules/utils"
+
+# Import classes
+require_relative "./classes/account"
+
+# Include modules
 include Menu
-include Account
+include Utils
 
 
 # Variables for system
 
 
-
-# Program
-
 #Load Menu
 Menu.welcome
-Menu.start_menu
+# Menu.start_menu
 
+
+
+user = Account.new("test", "test", "yrdy@gmail.com", "test123")
+puts user

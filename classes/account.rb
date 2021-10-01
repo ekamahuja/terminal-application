@@ -1,27 +1,25 @@
 class Account
-    @@account_list = []
 
-    attr_accessor :user_name, :first_name, :last_name, :email, :password
+    attr_reader :first_name, :last_name, :user_name, :email, :password
+    @@profile_data = []
 
-    def register_account(first_name, last_name, email, password)
-        @user_name = first_name + last_name
-        @first_name = first_name
-        @last_name = last_name
-        @email = email
-        @password = password
+    def initialize(first_name, last_name, email, password)
+        @first_name = first_name.downcase!
+        @last_name = last_name.downcase!
+        @user_name = first_name + last_name + Utils.random_number(100).to_s
+        @email = email.downcase!
+        @password = Base64.encode64(password)
 
-        @@account_list.push(self)
+        profile = @first_name
+
+        @@profile_data << profile
+        Utils.save_data(@@profile_data)
     end
 
-    def get_list
-        return @@account_list
-    end
 
-
+    
+    # def self.data
+    #     @@profile_data
+    # end
 
 end
-
-
-ekam = Account.new.register_account("Ekam", "Ahuja", "EkamAhuja@Gmail.Com", "cumforme123")
-
-puts ekam.first_name

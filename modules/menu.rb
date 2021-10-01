@@ -1,8 +1,11 @@
 module Menu
+    
+# Promot Variable
+prompt = TTY::Prompt.new
 
 # Start Program Menu
     def welcome
-        puts "Welcome! --- Imagine this is a cool screen which will be added later..."
+        puts "Welcome!"
         # catpix ../storage/images/logo.jpg
     end
 
@@ -19,11 +22,10 @@ module Menu
     end
 
 
-    def start_menu 
-        prompt = TTY::Prompt.new
-        menu_options = %w(Login Register)
-        prompt.multi_select("Menu", menu_options)
-    end    
+    # def start_menu 
+    #     menu_options = %w(Login Register)
+    #     prompt.multi_select("Menu", menu_options)
+    # end    
 
 
 
