@@ -1,18 +1,26 @@
 [
     {
-        "id": 1,
-        "first_name": "john",
-        "last_name": "smith",
-        "user_name": "johnsmith23",
-        "email": "johnsmith112@gmail.com",
-        "password": "password123"
+       "id":1,
+       "first_name":"john",
+       "last_name":"smith",
+       "user_name":"johnsmith23",
+       "email":"johnsmith112@gmail.com",
+       "password":"password123"
     },
     {
-        "id": 2,
-        "first_name": "mike",
-        "last_name": "hunt",
-        "user_name": "mikehunt1589",
-        "email": "mikehunt1589@gmail.com",
-        "password": "test123"
+       "id":2,
+       "first_name":"mike",
+       "last_name":"hunt",
+       "user_name":"mikehunt1589",
+       "email":"mikehunt1589@gmail.com",
+       "password":"test123"
+    },
+    {
+       "id":3,
+       "first_name":"firstone",
+       "last_name":"lastasttest",
+       "user_name":"firstonelastasttest86",
+       "email":"yrdy@gmail.com",
+       "password":"dGVzdDEyMw==\n"
     }
-]
+ ]

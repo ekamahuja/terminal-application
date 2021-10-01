@@ -1,8 +1,13 @@
 class Account
-    attr_reader :id
-    attr_accessor :first_name, :last_name, :user_name, :email, :password
+    
+    # Attr Variables
+    attr_reader :id, :first_name, :last_name, :user_name
+    attr_accessor :email, :password
 
+    # Registers new accounts
     def initialize(first_name, last_name, email, password)
+
+        # Grabs and sorts data into variable
         @id = Account.get_id
         @first_name = first_name.downcase
         @last_name = last_name.downcase
@@ -10,6 +15,7 @@ class Account
         @email = email.downcase
         @password = Base64.encode64(password)
 
+        # Formats account information into a variable
         profile = {
             "id": @id,
             "first_name": @first_name,
@@ -19,11 +25,12 @@ class Account
             "password": @password
         }
 
-        Utils.save_data(profile)
+        # Calls save_data method from Utils file to save the profile variable
+        Utils.store_account(profile)
     end
 
 
-
+    # Grabs the amount of current accounts registed, and add +1 to make an unique ID for a new account
     def self.get_id
         id = Utils.get_amount_of_accounts + 1
         return id

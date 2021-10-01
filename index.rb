@@ -6,7 +6,7 @@ begin
     require "base64"
     require "json"
 rescue  LoadError
-    puts "Please install all required gems via running 'bundle'"
+    puts "Please install all required gems via running 'bundle install'"
     exit
 end
 
@@ -25,14 +25,20 @@ include Utils
 
 
 # Variables for system
-
+app = true
 
 #Load Menu
-Menu.welcome
-# Menu.start_menu
+while app === true 
+    begin
+        Menu.welcome
+        Menu.start_menu
+    rescue => errorMessage
+        puts errorMessage.uppercase
+    end
+end
 
 
 
 
-user = Account.new("firstone", "LASTasttest", "yrdy@gmail.com", "test123")
+# user = Account.new("firstone", "LASTasttest", "yrdy@gmail.com", "test123")
 # Utils.get_accounts
