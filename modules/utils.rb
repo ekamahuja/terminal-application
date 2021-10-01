@@ -13,7 +13,7 @@ module Utils
         return rand(0...maximum_value)
     end
 
-    # Stores accounts into .csv file
+    # Stores accounts into accounts.json file
     def Utils.store_account(account_data)
         file = File.read("./storage/dataBase/accounts.json")
         data = file == "" ? [] : JSON.parse(file)
@@ -21,6 +21,7 @@ module Utils
         File.write('./storage/dataBase/accounts.json', JSON.pretty_generate(data))
     end
 
+    # Fetches all registed accounts
     def Utils.fetch_accounts
         json = File.read("./storage/dataBase/accounts.json")
         accounts = JSON.parse(json)

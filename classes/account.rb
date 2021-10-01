@@ -32,8 +32,7 @@ class Account
 
     # Grabs the amount of current accounts registed, and add +1 to make an unique ID for a new account
     def self.get_id
-        id = Utils.get_amount_of_accounts + 1
-        return id
+        return Utils.get_amount_of_accounts + 1
     end
 
 

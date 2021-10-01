@@ -24,14 +24,6 @@
     "password": "dGVzdDEyMw==\n"
   },
   {
-    "id": 4,
-    "first_name": "ekam",
-    "last_name": "ahuja",
-    "user_name": "ekamahuja22",
-    "email": "ekamahuuaju@gmail.com",
-    "password": "MTIz\n"
-  },
-  {
     "id": 5,
     "first_name": "test",
     "last_name": "test",
@@ -69,6 +61,14 @@
     "last_name": "e",
     "user_name": "ee32",
     "email": "e@e.com",
+    "password": "MTIz\n"
+  },
+  {
+    "id": 9,
+    "first_name": "login",
+    "last_name": "last name",
+    "user_name": "loginlast name63",
+    "email": "email@email.com",
     "password": "MTIz\n"
   }
 ]
