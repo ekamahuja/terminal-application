@@ -33,5 +33,5 @@ Menu.welcome
 
 
 
-user = Account.new("test", "test", "yrdy@gmail.com", "test123")
+user = Account.new("firstone", "LASTasttest", "yrdy@gmail.com", "test123")
 puts user
