@@ -16,6 +16,7 @@ require_relative "./modules/utils"
 
 # Import classes
 require_relative "./classes/account"
+require_relative "./classes/order"
 
 # Include modules
 include Menu
