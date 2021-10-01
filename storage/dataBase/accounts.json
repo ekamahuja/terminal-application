@@ -9,66 +9,18 @@
   },
   {
     "id": 2,
-    "first_name": "mike",
-    "last_name": "hunt",
-    "user_name": "mikehunt1589",
-    "email": "mikehunt1589@gmail.com",
-    "password": "test123"
+    "first_name": "michale",
+    "last_name": "idk",
+    "user_name": "michaleidk37",
+    "email": "smit@gmail.com",
+    "password": "dGVzdGxvbDEyMw==\n"
   },
   {
     "id": 3,
-    "first_name": "firstone",
-    "last_name": "lastasttest",
-    "user_name": "firstonelastasttest86",
-    "email": "yrdy@gmail.com",
-    "password": "dGVzdDEyMw==\n"
-  },
-  {
-    "id": 5,
-    "first_name": "test",
-    "last_name": "test",
-    "user_name": "testtest90",
-    "email": "test@test.com",
-    "password": "dGVzdA==\n"
-  },
-  {
-    "id": 6,
-    "first_name": "test",
-    "last_name": "test",
-    "user_name": "testtest29",
-    "email": "test@test.com",
-    "password": "dGVzdA==\n"
-  },
-  {
-    "id": 7,
-    "first_name": "name",
-    "last_name": "last",
-    "user_name": "namelast79",
-    "email": "last@last.com",
-    "password": "MTIz\n"
-  },
-  {
-    "id": 8,
-    "first_name": "firstname",
-    "last_name": "lastname",
-    "user_name": "firstnamelastname25",
-    "email": "first@last.com",
-    "password": "dGVzdDEyMw==\n"
-  },
-  {
-    "id": 9,
-    "first_name": "e",
-    "last_name": "e",
-    "user_name": "ee32",
-    "email": "e@e.com",
-    "password": "MTIz\n"
-  },
-  {
-    "id": 9,
-    "first_name": "login",
-    "last_name": "last name",
-    "user_name": "loginlast name63",
-    "email": "email@email.com",
-    "password": "MTIz\n"
+    "first_name": "its",
+    "last_name": "qwerrt",
+    "user_name": "itsqwerrt29",
+    "email": "itsqwe@gmaik.com",
+    "password": "bG9sMTIz\n"
   }
 ]

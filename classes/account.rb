@@ -40,6 +40,7 @@ class Account
     def self.login(email_or_user, password)
         # email_or_user.downcase!
         accounts = Utils.fetch_accounts
+        puts accounts
     end
 
 
