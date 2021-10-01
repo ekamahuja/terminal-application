@@ -1,5 +1,13 @@
 module Utils
 
+    def Utils.clear_console
+        system("clear")
+    end
+
+    def Utils.wait(seconds_to_wait = 1)
+        sleep seconds_to_wait
+    end
+
     # Generates random number based on a maximum value provided
     def Utils.random_number(maximum_value)
         return rand(0...maximum_value)
@@ -18,5 +26,6 @@ module Utils
         json = File.read("./storage/dataBase/accounts.json")
         accounts = JSON.parse(json)
         return accounts.length
-    end    
+    end
+
 end

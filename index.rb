@@ -1,4 +1,4 @@
-# Import gems
+# Import gems & give an error to the user if there are any missing gem(s)
 begin
     require "csv"
     require "tty-prompt"
@@ -7,10 +7,8 @@ begin
     require "json"
 rescue  LoadError
     puts "Please install all required gems via running 'bundle install'"
-    exit
+    exit(1)
 end
-
-
 
 # Import modules
 require_relative "./modules/menu"
@@ -31,6 +29,8 @@ app = true
 while app === true 
     begin
         Menu.welcome
+        Utils.wait(1)
+        puts "\n"
         Menu.start_menu
     rescue => errorMessage
         puts errorMessage.uppercase
