@@ -32,20 +32,23 @@ app = true
 auth = false
 
 #Load Menu
-# while app === true 
-#     begin
-#     if auth === !true 
-#         Menu.welcome
-#         # Utils.wait(1)
-#         puts "\n"
-#         Menu.start_menu
-#     else
-#         # Menu for when authenticated
-#     end
-#     rescue => errorMessage
-#         puts errorMessage
-#     end
-# end
+while app === true
+    begin
+    if auth === !true
+        Menu.welcome
+        # Utils.wait(1)
+        puts "\n"
+        Menu.start_menu
+        auth = true
+    else
+      Menu.welcome("logged in user")
+      break
+        # Menu for when authenticated
+    end
+    rescue => errorMessage
+        puts errorMessage
+    end
+end
 
 
 # Account.login('test', 'pass"')

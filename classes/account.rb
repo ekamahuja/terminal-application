@@ -40,7 +40,12 @@ class Account
     def self.login(email_or_user, password)
         # email_or_user.downcase!
         accounts = Utils.fetch_accounts
-        puts accounts
+        accounts.each do |account|
+            if (account['email'] == email_or_user or account['user_name'] == email_or_user) and account['password'] == Base64.encode64(password)
+                return true
+            end
+        end
+        return false
     end
 
 

@@ -5,10 +5,14 @@ class Order
         @order_link = order_link
         @order_quantity = order_quantity
 
-        order = Api.order_new(@order_service, @order_link, @order_quantity)
+        order_response = Api.order_new(@order_service, @order_link, @order_quantity)
 
         puts order_response[:response]
 
+        if order_response[:response_code] === 200
+            puts order_response[:response]['order']
+        else
+        end
     end
 
 end
