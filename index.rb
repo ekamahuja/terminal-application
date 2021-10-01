@@ -33,5 +33,6 @@ Menu.welcome
 
 
 
+
 user = Account.new("firstone", "LASTasttest", "yrdy@gmail.com", "test123")
-puts user
+# Utils.get_accounts

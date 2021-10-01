@@ -1,8 +1,9 @@
 class Account
-
-    attr_reader :first_name, :last_name, :user_name, :email, :password
+    attr_reader :id
+    attr_accessor :first_name, :last_name, :user_name, :email, :password
 
     def initialize(first_name, last_name, email, password)
+        @id = Account.get_id
         @first_name = first_name.downcase
         @last_name = last_name.downcase
         @user_name = first_name.downcase + last_name.downcase + Utils.random_number(100).to_s
@@ -10,6 +11,7 @@ class Account
         @password = Base64.encode64(password)
 
         profile = {
+            "id": @id,
             "first_name": @first_name,
             "last_name": @last_name,
             "user_name": @user_name,
@@ -19,6 +21,14 @@ class Account
 
         Utils.save_data(profile)
     end
+
+
+
+    def self.get_id
+        id = Utils.get_amount_of_accounts + 1
+        return id
+    end
+
 
 
     

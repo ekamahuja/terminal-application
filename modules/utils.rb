@@ -15,8 +15,16 @@ module Utils
         # File.write('./storage/dataBase/accounts.json', JSON.dump(data))
 
         File.open("./storage/dataBase/accounts.json", "a") do |content|
-            content << data    
+            content << data.to_json    
         end
-        
+
     end
+
+
+    def Utils.get_amount_of_accounts
+        json = File.read("./storage/dataBase/accounts.json")
+        accounts = JSON.parse(json)
+        puts "Amount Of Accounts #{accounts}"
+        return accounts.length
+    end    
 end
