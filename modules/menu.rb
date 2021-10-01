@@ -31,7 +31,10 @@ module Menu
                     Utils.clear_console
                     if not Menu.login_account
                         puts "Invalid login credentials"
+                    else
+                        return true
                     end
+    
                 when "Register"
                     Utils.clear_console
                     Menu.register_account

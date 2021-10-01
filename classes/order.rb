@@ -10,7 +10,8 @@ class Order
         puts order_response[:response]
 
         if order_response[:response_code] === 200
-            puts order_response[:response]['order']
+            # puts order_response[:response].class
+            # puts order_response[:response]
         else
         end
     end

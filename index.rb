@@ -19,7 +19,6 @@ require_relative "./modules/api"
 require_relative "./classes/account"
 require_relative "./classes/order"
 
-
 # Include modules
 include Menu
 include Utils
@@ -38,8 +37,9 @@ while app === true
         Menu.welcome
         # Utils.wait(1)
         puts "\n"
-        Menu.start_menu
-        auth = true
+        if Menu.start_menu
+            auth = true
+        end
     else
       Menu.welcome("logged in user")
       break
@@ -52,4 +52,4 @@ end
 
 
 # Account.login('test', 'pass"')
-Order.new("374", "https://test.com", "10")
+# Order.new("374", "https://test.com", "10")
