@@ -29,7 +29,8 @@ module Utils
 
   # Stores fetched services into services.json as cache
   def Utils.store_services(service_data)
-    File.write(@configs['SERVICES'], JSON.dump(service_data))
+    file = File.open(@configs['SERVICES'], 'w')
+    file << service_data
   end
 
   # Fetches all registred accounts
@@ -52,8 +53,14 @@ module Utils
 
   # get all the services from store
   def Utils.get_services(ids_to_fetch)
-    all_services = File.read(@configs['SERVICES'])
-    # puts all_services
+    all_services = JSON.parse(File.read(@configs['SERVICES']))
+    matching_services = []
+    all_services.each do |service|
+      if ids_to_fetch.include?(service['service'])
+        matching_services.append service
+      end
+    end
+    return matching_services
   end
 
   # gets the total accounts available in store

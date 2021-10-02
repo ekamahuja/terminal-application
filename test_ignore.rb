@@ -24,38 +24,10 @@ include Menu
 include Utils
 include Api
 
-
-
-# Variables for system
-app = true
-auth = false
-once_flag = true
-#Load Menu
-# while app === true
-#     begin
-#     if auth === !true
-#       if once_flag
-#         Menu.welcome
-#         once_flag = false
-#       end
-#         # Utils.wait(1)
-#         puts "\n"
-#         user = Menu.start_menu
-#         if user
-#             auth = user
-#         end
-#     else
-#       Menu.welcome(auth['first_name'])
-#       break
-#         # Menu for when authenticated
-#     end
-#     rescue => errorMessage
-#         puts errorMessage
-#     end
-# end
-
+configs = JSON.parse(File.read './storage/config/system_config.json')
 
 # Account.login('test', 'pass"')
 # Order.new("374", "https://test.com", "10")
 Api.fetch_services
+puts Utils.get_services(configs['MAIN_SERVICE_IDS'])
 # Utils.get_services(231)
