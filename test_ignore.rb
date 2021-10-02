@@ -5,6 +5,7 @@ begin
     require "json"
     require "terminal-table"
     require "httparty"
+    require "dotenv"
 rescue  LoadError
     puts "Please install all required gems via running 'bundle install'"
     exit(1)
@@ -27,7 +28,7 @@ include Api
 configs = JSON.parse(File.read './storage/config/system_config.json')
 
 # Account.login('test', 'pass"')
-# Order.new("374", "https://test.com", "10")
-Api.fetch_services
-puts Utils.get_services(configs['MAIN_SERVICE_IDS'])
+Order.new("374", "https://test.com", "10")
+# Api.fetch_services
+# puts Utils.get_services(configs['MAIN_SERVICE_IDS'])
 # Utils.get_services(231)

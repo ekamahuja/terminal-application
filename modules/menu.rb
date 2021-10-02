@@ -1,7 +1,5 @@
 module Menu
 
-    # Promot Variable
-
 
     # Start Program Menu
     def Menu.welcome(name = "user")
@@ -94,7 +92,7 @@ module Menu
     end
 
     # show the menu for authenticated user
-    def Menu.logged_in
+    def Menu.logged_in(user)
         prompt = TTY::Prompt.new
         menu_options = ["View all services", "Place Order", "Order History", "Check Order Status", "View Profile", "Edit Profile"]
         logged_menu_choice = prompt.select("Logged In User Menu\n", menu_options)
@@ -109,11 +107,58 @@ module Menu
             when "Check Order Status"
                 Menu.order_status_check
             when "View Profile"
-                Menu.view_profile
+                Menu.view_profile(user)
             when "Edit Profile"
-                Menu.edit_profile
+                Menu.edit_profile(user)
             else
                 puts "Something went wrong!"
         end
     end
+   
+    # edits user profile
+  def Menu.edit_profile(user)
+    prompt = TTY::Prompt.new
+
+    while true
+        email = prompt.ask("What is your email?") do |q|
+          q.validate(/\A\w+@\w+\.\w+\Z/, "Invalid email address -- Please enter a valid email address")
+        end
+        password_one = prompt.mask("Please enter a strong password: ")
+        passsword_two = prompt.mask("Please confirm your password: ")
+        mail_already_in_use = false
+
+        if (password_one === passsword_two)
+          password_confirmed = password_one
+          accounts = Utils.fetch_accounts
+          accounts.each do |account|
+            if account['email'] == email
+              puts "email already in use by some one else"
+              mail_already_in_use = true
+              break
+            end
+          end
+          unless mail_already_in_use
+              accounts = Utils.fetch_accounts
+              accounts.each do |account|
+                  if account['id'] == user['id']
+                      account['email'] = email
+                      account['password'] = Base64.encode64 password_confirmed
+                  end
+              end
+              File.write(JSON.parse(File.read './storage/config/system_config.json')['ACCOUNTS'], JSON.pretty_generate(accounts))
+              break
+          end
+        else
+          puts "passwords do not match!"
+        end
+      end
+    end
+
+    # display user profile
+  def Menu.view_profile(user)
+    puts "First Name: " + user['first_name']
+    puts "Last Name: " + user['last_name']
+    puts "Email: " + user['email']
+    puts "User Name: " + user['user_name']
+  end
 end

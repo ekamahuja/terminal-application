@@ -5,6 +5,7 @@ begin
     require "json"
     require "terminal-table"
     require "httparty"
+    require "dotenv"
 rescue  LoadError
     puts "Please install all required gems via running 'bundle install'"
     exit(1)
@@ -47,7 +48,7 @@ while app === true
     else
     Utils.clear_console
       Menu.welcome(auth['first_name'])
-      Menu.logged_in
+      Menu.logged_in(auth)
       break
         
     end
