@@ -90,6 +90,10 @@ module Utils
   def Utils.get_amount_of_accounts
     return Utils.fetch_accounts.length
   end
+
+  def Utils.get_amount_of_orders
+    return Utils.fetch_orders.length
+  end
 end
 
 

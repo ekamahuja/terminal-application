@@ -22,5 +22,13 @@
     "user_name": "ghgh21",
     "email": "g@g.com",
     "password": "ZzE=\n"
+  },
+  {
+    "id": 4,
+    "first_name": "mike",
+    "last_name": "h",
+    "user_name": "mikeh86",
+    "email": "m@h.com",
+    "password": "MTIz\n"
   }
 ]

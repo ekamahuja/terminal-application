@@ -205,7 +205,7 @@ module Menu
     end
     selected_service = prompt.select("Select a service you would like to: ", service_name)
     selected_service = Utils.get_services(["#{selected_service.split("|")[1]}"])
-    selected_quantity = prompt.slider("Please choose how many you would like to order (quantity): ", min: selected_service[0]['min'].to_i, max: selected_service[0]['max'].to_i, step: selected_service[0]['min'].to_i)
+    selected_quantity = prompt.slider("Please choose how many you would like to order (quantity): ", min: selected_service[0]['min'].to_i, max: selected_service[0]['max'].to_i < 500 ? selected_service[0]['max'].to_i : 500, step: selected_service[0]['min'].to_i)
     selected_link = prompt.ask("Please enter a valiad link to the service you have selected: ") do |q|
         q.required true
         # q.validate /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
