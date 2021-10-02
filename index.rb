@@ -29,26 +29,30 @@ include Api
 # Variables for system
 app = true
 auth = false
-
+once_flag = true
 #Load Menu
-# while app === true
-#     begin
-#     if auth === !true
-#         Menu.welcome
-#         # Utils.wait(1)
-#         puts "\n"
-#         if Menu.start_menu
-#             auth = true
-#         end
-#     else
-#       Menu.welcome("logged in user")
-#       break
-#         # Menu for when authenticated
-#     end
-#     rescue => errorMessage
-#         puts errorMessage
-#     end
-# end
+while app === true
+    begin
+    if auth === !true
+      if once_flag
+        Menu.welcome
+        once_flag = false
+      end
+        # Utils.wait(1)
+        puts "\n"
+        user = Menu.start_menu
+        if user
+            auth = user
+        end
+    else
+      Menu.welcome(auth['first_name'])
+      break
+        # Menu for when authenticated
+    end
+    rescue => errorMessage
+        puts errorMessage
+    end
+end
 
 
 # Account.login('test', 'pass"')
