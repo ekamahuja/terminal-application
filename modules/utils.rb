@@ -34,8 +34,11 @@ module Utils
   end
 
   def Utils.store_order(order_data)
-    puts order_data
-    File.write("./storage/dataBase/orders.json", JSON.dump(order_data))
+    file_path = @configs['ORDERS']
+    file =  File.read(file_path)
+    data = file == "" ? [] : JSON.parse(file)
+    data << order_data
+    File.write(file_path, JSON.pretty_generate(data))
   end
 
   # Fetches all registred accounts

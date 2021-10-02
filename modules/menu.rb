@@ -1,6 +1,7 @@
 module Menu
 
-    # Promot Variable
+    # gets the config files
+    @configs = JSON.parse(File.read './storage/config/system_config.json')
 
 
     # Start Program Menu
@@ -104,7 +105,6 @@ module Menu
           Service.view_all
         when "Place Order"
           Menu.start_new_order
-        # Order.new("374", "https://test.com", "10")
         when "Order History"
           Order.view_history
         when "Check Order Status"
@@ -195,24 +195,24 @@ module Menu
   end
 
   def Menu.start_new_order
+    Utils.clear_console
     prompt = TTY::Prompt.new
     Api.fetch_services 
-    service_list = Utils.get_services(["232", "374", "28", "259", "21"])
+    service_list = Utils.get_services(@configs['MAIN_SERVICE_IDS'])
     service_name = []
     service_list.each do |service|
         service_name << "#{service['name']} |#{service['service']}|"
     end
-    selected_service = prompt.select("Select a service you would like to ", service_name)
+    selected_service = prompt.select("Select a service you would like to: ", service_name)
     selected_service = Utils.get_services(["#{selected_service.split("|")[1]}"])
-    selected_quantity = prompt.slider("Quantity", min: selected_service[0]['min'].to_i, max: selected_service[0]['max'].to_i, step: selected_service[0]['min'].to_i)
+    selected_quantity = prompt.slider("Please choose how many you would like to order (quantity): ", min: selected_service[0]['min'].to_i, max: selected_service[0]['max'].to_i, step: selected_service[0]['min'].to_i)
     selected_link = prompt.ask("Please enter a valiad link to the service you have selected: ") do |q|
         q.required true
         # q.validate /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
     end
     puts "By placing this order you agree to the terms and conditions of https://topnotchgrowth.com/terms"
     prompt.keypress("Press enter to place your order", keys: [:return])
-    # order = Api.order_new(selected_service[0]['service'].to_s, selected_link.to_s, selected_quantity.to_s)
-    # puts order
+    Order.new(selected_service[0]['service'].to_s, selected_link.to_s, selected_quantity.to_s)
   end
 
 end

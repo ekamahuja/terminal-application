@@ -3,5 +3,5 @@
   "ORDERS":"./storage/dataBase/orders.json",
   "SERVICES":"./storage/dataBase/services.json",
   "API_BASE_URL":"https://topnotchgrowth.com/api/v2",
-  "MAIN_SERVICE_IDS": ["232", "374", "28", "259"]
+  "MAIN_SERVICE_IDS": ["232", "470", "490", "18", "408", "374"]
 }
