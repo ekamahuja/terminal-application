@@ -103,8 +103,8 @@ module Menu
         when "View all services"
           Service.view_all
         when "Place Order"
-        #   Menu.start_new_order
-        Order.new("374", "https://test.com", "10")
+          Menu.start_new_order
+        # Order.new("374", "https://test.com", "10")
         when "Order History"
           Order.view_history
         when "Check Order Status"
@@ -193,5 +193,27 @@ module Menu
     Utils.wait 1
     Menu.logged_in
   end
+
+  def Menu.start_new_order
+    prompt = TTY::Prompt.new
+    Api.fetch_services 
+    service_list = Utils.get_services(["232", "374", "28", "259", "21"])
+    service_name = []
+    service_list.each do |service|
+        service_name << "#{service['name']} |#{service['service']}|"
+    end
+    selected_service = prompt.select("Select a service you would like to ", service_name)
+    selected_service = Utils.get_services(["#{selected_service.split("|")[1]}"])
+    selected_quantity = prompt.slider("Quantity", min: selected_service[0]['min'].to_i, max: selected_service[0]['max'].to_i, step: selected_service[0]['min'].to_i)
+    selected_link = prompt.ask("Please enter a valiad link to the service you have selected: ") do |q|
+        q.required true
+        # q.validate /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
+    end
+    puts "By placing this order you agree to the terms and conditions of https://topnotchgrowth.com/terms"
+    prompt.keypress("Press enter to place your order", keys: [:return])
+    # order = Api.order_new(selected_service[0]['service'].to_s, selected_link.to_s, selected_quantity.to_s)
+    # puts order
+  end
+
 end
 

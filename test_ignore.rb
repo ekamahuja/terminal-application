@@ -28,7 +28,8 @@ include Api
 configs = JSON.parse(File.read './storage/config/system_config.json')
 
 # Account.login('test', 'pass"')
-Order.new("374", "https://test.com", "10")
+# Order.new("374", "https://test.com", "10")
+Menu.start_new_order
 # Api.fetch_services
 # puts Utils.get_services(configs['MAIN_SERVICE_IDS'])
 # Utils.get_services(231)

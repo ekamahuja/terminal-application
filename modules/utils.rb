@@ -33,6 +33,11 @@ module Utils
     file << service_data
   end
 
+  def Utils.store_order(order_data)
+    puts order_data
+    File.write("./storage/dataBase/orders.json", JSON.dump(order_data))
+  end
+
   # Fetches all registred accounts
   def Utils.fetch_accounts
     file_path = @configs['ACCOUNTS']
@@ -48,7 +53,22 @@ module Utils
       file.close
       return data
     end
+  end
 
+  def Utils.fetch_orders
+    file_path = @configs['ORDERS']
+
+    if File.exist?(file_path)
+      file = File.read(file_path)
+      orders = JSON.parse(file)
+      return orders
+    else
+      file = File.new(file_path, 'w')
+      data = []
+      File.write(file_path, JSON.pretty_generate(data))
+      file.close
+      return data
+    end
   end
 
   # get all the services from store
@@ -68,4 +88,5 @@ module Utils
     return Utils.fetch_accounts.length
   end
 end
+
 
