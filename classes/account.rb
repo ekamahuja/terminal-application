@@ -3,7 +3,9 @@ class Account
     # Attr Variables
     attr_reader :id, :first_name, :last_name, :user_name
     attr_accessor :email, :password
-  
+
+    @@logged_in_user = nil
+
     # Registers new accounts
     def initialize(first_name, last_name, email, password)
   
@@ -29,7 +31,11 @@ class Account
       Utils.store_account(profile)
     end
   
-  
+    # gets the currently logged in user info
+    def self.get_logged_in_user
+      return @@logged_in_user
+    end
+
     # Grabs the amount of current accounts registed, and add +1 to make an unique ID for a new account
     def self.get_id
       return Utils.get_amount_of_accounts + 1
@@ -42,7 +48,8 @@ class Account
       accounts = Utils.fetch_accounts
       accounts.each do |account|
         if (account['email'] == email_or_user or account['user_name'] == email_or_user) and account['password'] == Base64.encode64(password)
-          return account
+          @@logged_in_user = account
+          return true
         end
       end
       return false

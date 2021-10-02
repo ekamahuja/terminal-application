@@ -94,7 +94,7 @@ module Menu
   end
 
     # show the menu for authenticated user
-  def Menu.logged_in(user)
+  def Menu.logged_in
     prompt = TTY::Prompt.new
     menu_options = ["View all services", "Place Order", "Order History", "Check Order Status", "View Profile", "Edit Profile"]
     logged_menu_choice = prompt.select("Logged In User Menu\n", menu_options)
@@ -103,15 +103,16 @@ module Menu
         when "View all services"
           Service.view_all
         when "Place Order"
-          Menu.start_new_order
+        #   Menu.start_new_order
+        Order.new("374", "https://test.com", "10")
         when "Order History"
           Order.view_history
         when "Check Order Status"
           Menu.order_status_check
         when "View Profile"
-          Menu.view_profile(user)
+          Menu.view_profile
         when "Edit Profile"
-          Menu.edit_profile(user)
+          Menu.edit_profile
         else
           puts "Something went wrong!"
     end
@@ -119,13 +120,13 @@ module Menu
   end
 
   # edits user profile
-  def Menu.edit_profile(user)
+  def Menu.edit_profile
     prompt = TTY::Prompt.new
 
     menu_options = ["Change E-mail", "Change Password",]
     change_menu_options = prompt.select("Logged In User Menu\n", menu_options)
-
     accounts = Utils.fetch_accounts
+    user = Account.get_logged_in_user
 
     case change_menu_options
       when "Change E-mail"
@@ -149,7 +150,7 @@ module Menu
             end
             File.write(JSON.parse(File.read './storage/config/system_config.json')['ACCOUNTS'], JSON.pretty_generate(accounts))
             puts "e-mail updated!"
-            Menu.logged_in user
+            Menu.logged_in
             break
           end
         end
@@ -172,7 +173,7 @@ module Menu
             end
             File.write(JSON.parse(File.read './storage/config/system_config.json')['ACCOUNTS'], JSON.pretty_generate(accounts))
             puts "password updated!"
-            Menu.logged_in user
+            Menu.logged_in
             break
           end
         end
@@ -183,13 +184,14 @@ module Menu
   end
 
   # display user profile
-  def Menu.view_profile(user)
+  def Menu.view_profile
+    user = Account.get_logged_in_user
     puts "First Name: " + user['first_name']
     puts "Last Name: " + user['last_name']
     puts "Email: " + user['email']
     puts "User Name: " + user['user_name']
     Utils.wait 1
-    Menu.logged_in(user)
+    Menu.logged_in
   end
 end
 

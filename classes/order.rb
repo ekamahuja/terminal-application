@@ -11,7 +11,7 @@ class Order
 
         if order_response[:response_code] === 200
             order_data =  {
-                "user_id": 1,
+                "user_id": Account.get_logged_in_user['id'],
                 "order_id": 12,
                 "api_provide_order_id": order_response[:response],
                 "service_id": @order_service,

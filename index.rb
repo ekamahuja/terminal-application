@@ -47,10 +47,10 @@ while app === true
         end
     else
     Utils.clear_console
-      Menu.welcome(auth['first_name'])
-      Menu.logged_in(auth)
+      Menu.welcome(Account.get_logged_in_user['first_name'])
+      Menu.logged_in
       break
-        
+
     end
     rescue => errorMessage
         puts errorMessage
