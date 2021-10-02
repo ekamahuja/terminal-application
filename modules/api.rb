@@ -16,7 +16,6 @@ module Api
         response = HTTParty.get("https://topnotchgrowth.com/api/v2?key=c2623c04dcd24d138824a8d8c8177446&action=services")
 
         services = response.body.to_json
-        puts services
         Utils.store_services(services)
     end
 end

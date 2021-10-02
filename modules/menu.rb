@@ -40,6 +40,7 @@ module Menu
         end
     end
 
+    # logs in a user
     def Menu.login_account
         prompt = TTY::Prompt.new
         email_or_user = prompt.ask("Please enter your email or username: ")
@@ -47,6 +48,7 @@ module Menu
         Account.login(email_or_user, password)
     end
 
+    # registers a user and store it in json store
     def Menu.register_account
         prompt = TTY::Prompt.new
         while true
@@ -91,7 +93,7 @@ module Menu
         end
     end
 
-
+    # show the menu for authenticated user
     def Menu.logged_in
         prompt = TTY::Prompt.new
         menu_options = ["View all services", "Place Order", "Order History", "Check Order Status", "View Profile", "Edit Profile"]
