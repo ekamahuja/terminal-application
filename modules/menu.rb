@@ -155,10 +155,11 @@ module Menu
     end
 
     # display user profile
-  def Menu.view_profile(user)
-    puts "First Name: " + user['first_name']
-    puts "Last Name: " + user['last_name']
-    puts "Email: " + user['email']
-    puts "User Name: " + user['user_name']
-  end
+    def Menu.view_profile(user)
+        Utils.clear_console
+        puts "Your Profile:"
+        puts "Full Name: " + user['first_name'].capitalize + " " + user['last_name'].capitalize
+        puts "Email: " + user['email'].capitalize
+        puts "User Name: " + user['user_name'].capitalize
+    end
 end
