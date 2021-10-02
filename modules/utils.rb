@@ -22,8 +22,9 @@ module Utils
       File.write(file_path, JSON.pretty_generate(data))
     end
 
+    # Stores fetched services into services.json as cache
     def Utils.store_services(service_data)
-        File.write("./storage/dataBase/services.json", JSON.pretty_generate(service_data))
+        File.write("./storage/dataBase/services.json", JSON.dump(service_data))
     end
   
     # Fetches all registed accounts
@@ -43,7 +44,14 @@ module Utils
        end
   
     end
-  
+
+    def Utils.get_services(ids_to_fetch)
+        all_services = File.read("./storage/dataBase/services.json")
+        all_services.each do |test|
+            puts test
+        end
+    end
+    
     def Utils.get_amount_of_accounts
       return Utils.fetch_accounts.length
     end

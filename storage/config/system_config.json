@@ -1,0 +1,6 @@
+{
+  "ACCOUNTS":"./storage/dataBase/accounts.json",
+  "ORDERS":"./storage/dataBase/orders.json",
+  "SERVICES":"./storage/dataBase/services.json",
+  "API_BASE_URL":" https://topnotchgrowth.com/api/v2"
+}

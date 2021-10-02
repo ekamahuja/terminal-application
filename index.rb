@@ -57,4 +57,4 @@ end
 
 # Account.login('test', 'pass"')
 # Order.new("374", "https://test.com", "10")
-Api.fetch_services
+# Api.fetch_services
