@@ -13,9 +13,9 @@ class Order
             order_data =  {
                 "user_id": 1,
                 "order_id": 12,
-                "api_provide_order_id": order_response[:response] ['order'],
+                "api_provide_order_id": order_response[:response],
                 "service_id": @order_service,
-                "service_name": Utils.get_services(@order_service.to_s),
+                "service_name": "Api test",
                 "link": @order_link,
                 "quantity": @order_quantity,
                 "status": "Pending"
