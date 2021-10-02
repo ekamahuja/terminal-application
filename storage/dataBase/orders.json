@@ -7,7 +7,9 @@
     "service_name": "⭐👍 Instagram Likes [MQ] [Fast]",
     "link": "link.com",
     "quantity": 500,
-    "status": null,
+    "status": {
+      "error": "Incorrect request"
+    },
     "start_count": null,
     "remains": 0,
     "charge": 0,
@@ -21,9 +23,29 @@
     "service_name": "⭐👍 Instagram Likes [MQ] [Fast]",
     "link": "123",
     "quantity": 270,
-    "status": "pending",
+    "status": {
+      "charge": "0.33048",
+      "start_count": null,
+      "status": "Completed",
+      "remains": "0",
+      "currency": "USD"
+    },
     "start_count": null,
     "remains": 270,
+    "charge": 0,
+    "currency": "USD"
+  },
+  {
+    "user_id": 2,
+    "order_id": 3,
+    "provider_order_id": 29959,
+    "service_id": 374,
+    "service_name": "🔗 API TEST[NO CREDIT REQUIRED]",
+    "link": "pop.com",
+    "quantity": 100,
+    "status": "pending",
+    "start_count": null,
+    "remains": 100,
     "charge": 0,
     "currency": "USD"
   }
