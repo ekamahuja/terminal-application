@@ -45,9 +45,11 @@ while app === true
             auth = user
         end
     else
+    Utils.clear_console
       Menu.welcome(auth['first_name'])
+      Menu.logged_in
       break
-        # Menu for when authenticated
+        
     end
     rescue => errorMessage
         puts errorMessage

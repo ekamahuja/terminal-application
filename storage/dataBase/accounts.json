@@ -6,5 +6,13 @@
     "user_name": "johnsmith23",
     "email": "johnsmith112@gmail.com",
     "password": "password123"
+  },
+  {
+    "id": 2,
+    "first_name": "ekam",
+    "last_name": "a",
+    "user_name": "ekama70",
+    "email": "ekama@gmail.com",
+    "password": "MTIz\n"
   }
 ]

@@ -57,5 +57,5 @@ once_flag = true
 
 # Account.login('test', 'pass"')
 # Order.new("374", "https://test.com", "10")
-# Api.fetch_services
-Utils.get_services(231)
+Api.fetch_services
+# Utils.get_services(231)

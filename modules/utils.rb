@@ -47,9 +47,7 @@ module Utils
 
     def Utils.get_services(ids_to_fetch)
         all_services = File.read("./storage/dataBase/services.json")
-        all_services.each do |test|
-            puts test
-        end
+        # puts all_services
     end
     
     def Utils.get_amount_of_accounts
