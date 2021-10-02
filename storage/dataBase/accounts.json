@@ -6,21 +6,5 @@
     "user_name": "johnsmith23",
     "email": "johnsmith112@gmail.com",
     "password": "password123"
-  },
-  {
-    "id": 2,
-    "first_name": "michale",
-    "last_name": "idk",
-    "user_name": "michaleidk37",
-    "email": "smit@gmail.com",
-    "password": "dGVzdGxvbDEyMw==\n"
-  },
-  {
-    "id": 3,
-    "first_name": "its",
-    "last_name": "qwerrt",
-    "user_name": "itsqwerrt29",
-    "email": "itsqwe@gmaik.com",
-    "password": "bG9sMTIz\n"
   }
 ]

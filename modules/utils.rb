@@ -21,6 +21,10 @@ module Utils
         File.write('./storage/dataBase/accounts.json', JSON.pretty_generate(data))
     end
 
+    def Utils.store_services(service_data)
+        File.write("./storage/dataBase/services.json", JSON.pretty_generate(service_data))
+    end
+
     # Fetches all registed accounts
     def Utils.fetch_accounts
         json = File.read("./storage/dataBase/accounts.json")

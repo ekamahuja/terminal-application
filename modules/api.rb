@@ -12,5 +12,11 @@ module Api
         return new_order_response
     end
 
+    def Api.fetch_services
+        response = HTTParty.get("https://topnotchgrowth.com/api/v2?key=c2623c04dcd24d138824a8d8c8177446&action=services")
+
+        services = response.body.to_json
+        Utils.store_services(services)
+    end
 end
     
