@@ -1,15 +1,21 @@
 class Order
 
+  # Method to make new order in Order class
   def initialize(order_service, order_link, order_quantity)
+
+    # Takes parms and sorts them into instant variables
     @order_service = order_service
     @order_link = order_link
     @order_quantity = order_quantity
     @order_data = {}
 
+    # Calls method from API module to send a GET API request to place the order and saves resposne in a variable (order_response)
     order_response = Api.order_new(@order_service, @order_link, @order_quantity)
+    
+    # Once an order is placed, it sends another API request to get the status of the order
     order_status =  Order.check_status(JSON.parse(order_response[:response])['order'].to_s)
     
-
+    # Take the information from order_response and order_status and sort it out in one json object under a instatn variable
     if order_response[:response_code] === 200
       @order_data =  {
           "user_id": Account.get_logged_in_user['id'],
@@ -26,20 +32,30 @@ class Order
           "currency": order_status['currency'].downcase
       }
 
+      # Calls method to save the order information into orders.json
       Utils.store_order(@order_data)
-        
+    
+    # If response code is not 200, give error info (most likely this will never get called as the Api module handles any error that might occur)
     else
-      puts "something went wrong"
+      utils.clear_console
+      puts "Something has gone horriably wrong ! :/"
+      puts "Error Info:\n Response from order call: #{order_response[:response]}\n Response from status call: #{order_status}"
+      exit(1)
     end
   end
 
+  # Returns the order_id of the succesfull order
   def to_s
     return (@order_data[:order_id]).to_s
   end
 
+  # Method to view the order history of the user
   def self.view_history
     rows = []
+    # Calls a Utils method to grab all the orders avaliable in orders.json
     orders = Utils.fetch_orders
+    
+    # Gets the user_id 
     user_id = Account.get_logged_in_user['id']
     orders.each.with_index do |order, i|
       if order['user_id'] === user_id

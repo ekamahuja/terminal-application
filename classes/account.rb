@@ -1,5 +1,8 @@
 class Account
 
+  # Attr Reader to make @user_name accessiable
+  attr_reader :user_name
+
   # Class variable
   @@logged_in_user = nil
 

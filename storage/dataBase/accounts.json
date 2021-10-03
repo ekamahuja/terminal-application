@@ -38,5 +38,21 @@
     "user_name": "testtest7",
     "email": "test@gmail.com",
     "password": "MTIz\n"
+  },
+  {
+    "id": 6,
+    "first_name": "test",
+    "last_name": "test",
+    "user_name": "testtest36",
+    "email": "test@test.com",
+    "password": "dGVzdA==\n"
+  },
+  {
+    "id": 7,
+    "first_name": "lol",
+    "last_name": "lol",
+    "user_name": "lollol89",
+    "email": "lol@lol.com",
+    "password": "bG9s\n"
   }
 ]

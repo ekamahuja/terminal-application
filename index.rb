@@ -35,31 +35,28 @@ once_flag = true
 
 #Load Menu
 while app === true
-    begin
+  begin
+    # Load welcome menu and start menu
     if auth === !true
       if once_flag
         Menu.welcome
         once_flag = false
       end
-        # Utils.wait(1)
         puts "\n"
         user = Menu.start_menu
         if user
             auth = user
         end
     else
-    Utils.clear_console
+      # Menu For when user logs in
+      Utils.clear_console
       Menu.welcome(Account.get_logged_in_user['first_name'])
       Menu.logged_in
       break
-
     end
+    # If something goes wrong, It lets the user know the error
     rescue => errorMessage
-        puts errorMessage
+      puts "Something went wrong! =(\n Error #{errorMessage}"
     end
 end
 
-
-# Account.login('test', 'pass"')
-# Order.new("374", "https://test.com", "10")
-# Api.fetch_services
