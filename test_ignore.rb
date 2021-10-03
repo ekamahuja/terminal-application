@@ -34,4 +34,10 @@ configs = JSON.parse(File.read './storage/config/system_config.json')
 # Api.fetch_services
 # puts Utils.get_services(configs['MAIN_SERVICE_IDS'])
 # Utils.get_services(231)
-puts Api.check_status("29959")
+# puts Api.check_status("29959")
+
+
+while 1 < 2
+    order = Api.order_new("374", "test.com" "25")
+    puts order
+end

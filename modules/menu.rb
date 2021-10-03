@@ -253,7 +253,7 @@ module Menu
     order_info = Utils.get_provider_id(user_order_id)
 
     if order_info == false || order_info['user_id'] != Account.get_logged_in_user['id']
-      puts "Invalid Order ID!"
+      puts "Invalid Order ID or This Order does not belong to you!"
       user_choice = prompt.select("Please select to retry or return to menu", fail_choices)
       if user_choice === fail_choices[0]
         Menu.order_status_check

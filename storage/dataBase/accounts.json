@@ -30,5 +30,13 @@
     "user_name": "mikeh86",
     "email": "m@h.com",
     "password": "MTIz\n"
+  },
+  {
+    "id": 5,
+    "first_name": "test",
+    "last_name": "test",
+    "user_name": "testtest7",
+    "email": "test@gmail.com",
+    "password": "MTIz\n"
   }
 ]

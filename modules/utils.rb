@@ -21,10 +21,18 @@ module Utils
   # Stores accounts into accounts.json file
   def Utils.store_account(account_data)
     file_path = @configs['ACCOUNTS']
-    file =  File.read(file_path)
-    data = file == "" ? [] : JSON.parse(file)
-    data << account_data
-    File.write(file_path, JSON.pretty_generate(data))
+    if File.exist? file_path
+      file =  File.read(file_path)
+      data = file == "" ? [] : JSON.parse(file)
+      data << account_data
+      File.write(file_path, JSON.pretty_generate(data))
+    else
+      file =  File.new(file_path, 'w')
+      file.close
+      data = []
+      data << account_data
+      File.write(file_path, JSON.pretty_generate(data))
+    end
   end
 
   # Stores fetched services into services.json as cache
@@ -35,10 +43,18 @@ module Utils
 
   def Utils.store_order(order_data)
     file_path = @configs['ORDERS']
-    file =  File.read(file_path)
-    data = file == "" ? [] : JSON.parse(file)
-    data << order_data
-    File.write(file_path, JSON.pretty_generate(data))
+    if File.exist? file_path
+      file =  File.read(file_path)
+      data = file == "" ? [] : JSON.parse(file)
+      data << order_data
+      File.write(file_path, JSON.pretty_generate(data))
+    else
+      file = File.new(file_path, 'w')
+      file.close
+      data = []
+      data << order_data
+      File.write(file_path, JSON.pretty_generate(data))
+    end
   end
 
   # Fetches all registred accounts
