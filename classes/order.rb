@@ -41,7 +41,7 @@ class Order
       if order['user_id'] === user_id
         if ['pending', 'processing', 'progress', nil].include? order['status']
           status = Order.check_status(order['provider_order_id'])
-          orders[i]['status'] = status.downcase
+          orders[i]['status'] = status['status'].downcase
           rows << [order['order_id'], order['service_name'], order['link'], order['charge'], order['start_count'], order['quantity'], status['status'], order['remains']]
         else
           rows << [order['order_id'], order['service_name'], order['link'], order['charge'], order['start_count'], order['quantity'], order['status'], order['remains']]
