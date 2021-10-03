@@ -94,6 +94,20 @@ module Utils
   def Utils.get_amount_of_orders
     return Utils.fetch_orders.length
   end
+
+  def Utils.get_provider_id(user_order_id)
+    orders = Utils.fetch_orders
+    orders.each do |order|
+      if user_order_id.to_i == order['order_id']
+        return order
+      end
+    end
+    return false
+  end
+
 end
+
+
+
 
 

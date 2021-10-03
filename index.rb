@@ -25,12 +25,14 @@ include Menu
 include Utils
 include Api
 
+# Load System Config
 
 
 # Variables for system
 app = true
 auth = false
 once_flag = true
+
 #Load Menu
 while app === true
     begin

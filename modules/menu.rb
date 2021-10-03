@@ -1,11 +1,11 @@
 module Menu
 
-    # gets the config files
+    # Get System config
     @configs = JSON.parse(File.read './storage/config/system_config.json')
-
 
     # Start Program Menu
   def Menu.welcome(name = "user")
+    Utils.clear_console
     puts "Welcome, #{name.capitalize}!"
       # catpix ../storage/images/logo.jpg
   end
@@ -31,7 +31,7 @@ module Menu
           Menu.register_account
         when "Exit"
           Utils.clear_console
-          puts "Exiting Application..."
+          puts "Exiting Application... GoodBye! =)"
           exit(0)
         else
           Utils.clear_console
@@ -97,22 +97,25 @@ module Menu
     # show the menu for authenticated user
   def Menu.logged_in
     prompt = TTY::Prompt.new
-    menu_options = ["View all services", "Place Order", "Order History", "Check Order Status", "View Profile", "Edit Profile"]
+    Utils.clear_console
+    menu_options = ["Place Order", "Order History", "Check Order Status", "View Profile", "Edit Profile", "Exit"]
     logged_menu_choice = prompt.select("Logged In User Menu\n", menu_options)
 
     case logged_menu_choice
-        when "View all services"
-          Service.view_all
         when "Place Order"
           Menu.start_new_order
         when "Order History"
-          Order.view_history
+          Menu.order_history
         when "Check Order Status"
           Menu.order_status_check
         when "View Profile"
           Menu.view_profile
         when "Edit Profile"
           Menu.edit_profile
+        when "Exit"
+          Utils.clear_console
+          puts "Exiting Application... GoodBye! =)"
+          exit(0)
         else
           puts "Something went wrong!"
     end
@@ -121,23 +124,24 @@ module Menu
 
   # edits user profile
   def Menu.edit_profile
+    Utils.clear_console
     prompt = TTY::Prompt.new
-
-    menu_options = ["Change E-mail", "Change Password",]
-    change_menu_options = prompt.select("Logged In User Menu\n", menu_options)
+    menu_options = ["Change E-mail", "Change Password", "Main Menu"]
+    change_menu_options = prompt.select("Profile Edit Menu:\n", menu_options)
     accounts = Utils.fetch_accounts
     user = Account.get_logged_in_user
 
     case change_menu_options
       when "Change E-mail"
         while true
-          email = prompt.ask("What is your email?") do |q|
+          Utils.clear_console
+          email = prompt.ask("Please enter your new email: ") do |q|
             q.validate(/\A\w+@\w+\.\w+\Z/, "Invalid email address -- Please enter a valid email address")
           end
           mail_already_in_use = false
           accounts.each do |account|
             if account['email'] == email
-              puts "email already in use by some one else"
+              puts "This email already exists by another user or this is already your current email!"
               mail_already_in_use = true
               break
             end
@@ -149,22 +153,30 @@ module Menu
               end
             end
             File.write(JSON.parse(File.read './storage/config/system_config.json')['ACCOUNTS'], JSON.pretty_generate(accounts))
-            puts "e-mail updated!"
+            puts "Email Updated!"
+            prompt.keypress("Press Enter to return to main menu", keys: [:return])
             Menu.logged_in
             break
           end
         end
       when "Change Password"
+        Utils.clear_console
         while true
-          current_password = prompt.mask("Please enter current password: ")
-          password_one = prompt.mask("Please enter a strong password: ")
-          passsword_two = prompt.mask("Please confirm your password: ")
+          current_password = prompt.mask("Please enter current password: ") do |q|
+            q.required true
+          end
+          password_one = prompt.mask("Please enter a strong password: ") do |q|
+            q.required true
+          end
+          passsword_two = prompt.mask("Please confirm your password: ") do |q|
+            q.required true
+          end
 
           current_password = Base64.encode64(current_password)
           if (current_password != user['password'])
-            puts "current password is incorrect"
+            puts "Your current password is incorrect! :("
           elsif (password_one != passsword_two)
-            puts "passwords do not match!"
+            puts "Your new passwords do not match!"
           else
             accounts.each do |account|
               if account['id'] == user['id']
@@ -172,28 +184,41 @@ module Menu
               end
             end
             File.write(JSON.parse(File.read './storage/config/system_config.json')['ACCOUNTS'], JSON.pretty_generate(accounts))
-            puts "password updated!"
+            Utils.clear_console
+            puts "Your password has been updated!"
+            prompt.keypress("Press Enter to return to main menu", keys: [:return])
             Menu.logged_in
             break
           end
         end
-
+      when "Main Menu"
+        Menu.logged_in
       else
         puts "something went wrong!"
     end
   end
 
-  # display user profile
-  def Menu.view_profile
-    user = Account.get_logged_in_user
-    puts "First Name: " + user['first_name']
-    puts "Last Name: " + user['last_name']
-    puts "Email: " + user['email']
-    puts "User Name: " + user['user_name']
-    Utils.wait 1
+  def Menu.order_history
+    prompt = TTY::Prompt.new
+    Utils.clear_console
+    puts "This may take a while to load depending on how many un-compeleted orders you have :)"
+    Order.view_history
+    prompt.keypress("Press Enter to return to main menu", keys: [:return])
     Menu.logged_in
   end
 
+  # display user profile
+  def Menu.view_profile
+    Utils.clear_console
+    prompt = TTY::Prompt.new
+    user = Account.get_logged_in_user
+    puts "Full Name: #{user['first_name'].capitalize} #{user['last_name'].capitalize}\nUsername: #{user['user_name'].capitalize}\nEmail: #{user['email'].capitalize}"
+    prompt.keypress("\nPress Enter to return to main menu", keys: [:return])
+    Menu.logged_in
+  end
+
+
+  # Place new order
   def Menu.start_new_order
     Utils.clear_console
     prompt = TTY::Prompt.new
@@ -210,9 +235,53 @@ module Menu
         q.required true
         # q.validate /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
     end
-    puts "By placing this order you agree to the terms and conditions of https://topnotchgrowth.com/terms"
-    prompt.keypress("Press enter to place your order", keys: [:return])
-    Order.new(selected_service[0]['service'].to_s, selected_link.to_s, selected_quantity.to_s)
+    puts "\nBy placing this order you agree to the terms and conditions of https://topnotchgrowth.com/terms"
+    prompt.keypress("Press Enter to place your order", keys: [:return])
+    Utils.clear_console
+    order = Order.new(selected_service[0]['service'].to_s, selected_link.to_s, selected_quantity.to_s)
+    puts "Your order has been placed! Your order ID is: #{order}"
+    prompt.keypress("Press Enter to return to main menu", keys: [:return])
+    Menu.logged_in
+  end
+
+  # Check order status
+  def Menu.order_status_check
+    Utils.clear_console
+    prompt = TTY::Prompt.new
+    fail_choices = ["Re-try", "Main Menu"]
+    user_order_id = prompt.ask("Please enter your Order ID: ") {  |q| q.in("0-1000000000000000000")}
+    order_info = Utils.get_provider_id(user_order_id)
+
+    if order_info == false || order_info['user_id'] != Account.get_logged_in_user['id']
+      puts "Invalid Order ID!"
+      user_choice = prompt.select("Please select to retry or return to menu", fail_choices)
+      if user_choice === fail_choices[0]
+        Menu.order_status_check
+      else 
+        Menu.logged_in
+      end
+    end
+
+    status_info = Api.check_status(order_info['provider_order_id'].to_s)
+
+    if status_info['status']
+      puts "Order Status: #{status_info['status']}\nStart Count: #{status_info['start_count']}\nRemains: #{status_info['remains']}\nCost: #{status_info['charge']} #{status_info['currency']}\n"
+    else
+      case status_info['error']
+        when "Incorrect order ID" 
+          puts "Please Enter a valid Order ID"
+          user_choice = prompt.select("Please select to retry or return to menu", fail_choices)
+          if user_choice === fail_choices[0]
+            Menu.order_status_check
+          else 
+            Menu.logged_in
+          end
+        else
+          puts "Error Occured!\n Error: #{status_info['error']}"
+        end
+    end
+    prompt.keypress("Press Enter to return to main menu", keys: [:return])
+    Menu.logged_in
   end
 
 end
