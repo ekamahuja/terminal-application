@@ -10,7 +10,9 @@ if [ ! -f ./storage/dataBase/accounts.json ]
 then
 	touch ./storage/dataBase/accounts.json
 	echo [] > ./storage/dataBase/accounts.json
-elif [ -s ./storage/dataBase/accounts.json ]
+fi
+	
+if [ -s ./storage/dataBase/accounts.json ]
 then
 	echo [] > ./storage/dataBase/accounts.json
 fi
@@ -19,7 +21,9 @@ if [ ! -f ./storage/dataBase/orders.json ]
 then
 	touch ./storage/dataBase/orders.json
 	echo [] > ./storage/dataBase/orders.json
-elif [ -s ./storage/dataBase/orders.json ]
+fi
+
+if [ -s ./storage/dataBase/orders.json ]
 then
 	echo [] > ./storage/dataBase/orders.json	
 fi
@@ -28,7 +32,9 @@ if [ ! -f ./storage/dataBase/services.json ]
 then
 	touch ./storage/dataBase/services.json
 	echo [] > ./storage/dataBase/services.json
-elif [ -s ./storage/dataBase/orders.json ]
+fi
+
+if [ -s ./storage/dataBase/orders.json ]
 then
 	echo [] > ./storage/dataBase/orders.json	
 fi
