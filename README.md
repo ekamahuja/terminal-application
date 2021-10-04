@@ -2,9 +2,9 @@
 
 ---
 ## Basic Information
-### Source Code - [Click here](https://terminal-application.ekam.dev/sourcecode)
+### Source Code - [Click here](https://github.com/ekamahuja/terminal-application)
 
-### Trello Board - [Click here](https://terminal-application.ekam.dev/trelloboard)
+### Trello Board - [Click here](https://trello.com/b/EPV0VAwR/terminal-application-t1a3)
 ---
 ## About Application
 
@@ -33,16 +33,16 @@
 ---
 ## Flow Chart Diagram of The Application And
 
-### Direct Link to The Flow Chart - [Click here](https://terminal-application.ekam.dev/flowchart)
+### Direct Link to The Flow Chart - [Click here](https://lucid.app/lucidchart/24526e6e-83cd-4e97-b2af-1b9492617d2f/edit?invitationId=inv_4812ca79-2c1c-4b14-b54f-4051749558b0)
 
 ---
 ## An Implementation Plan
-### Trello Board - [Click here](https://terminal-application.ekam.dev/trelloboard)
+### Trello Board - [Click here](https://trello.com/b/EPV0VAwR/terminal-application-t1a3)
 ---
 ## Help Documentation
 
 ### Steps To Install
-    - Ruby is required
+    - Ruby, windows 10 is required
     - Longest Ruby is installed and the device has a valid internet connection, the user can run the start.sh (by running 'bash start.sh') to take of everything; Install gems, making sure all database files exisit and are valid, .env exisits with a valid api key
     - Make sure there is a valid API key from topnotchgrowth.com in an .env file in the root directory (If you do not have one, a sample one will be crated when running 'bash start.sh')
     - Please install all gems before launching the application, all gems can either be installed via running 'bundle install' or 'bash start.sh'
