@@ -12,7 +12,7 @@ module Api
     begin
       #GET request
       response = HTTParty.get("#{@configs['API_BASE_URL']}?key=#{@api_key}&action=add&service=#{order_service}&link=#{order_link}&quantity=#{order_quantity}")
-      if response.body.has_key? 'error'
+      if JSON.parse(response.body).has_key? 'error'
         raise APIError
       end
       # Stores response and response code from the API into a variable
@@ -33,7 +33,7 @@ module Api
     begin  
       # GET request
       response = HTTParty.get("#{@configs['API_BASE_URL']}?key=#{@api_key}&action=services")
-      if response.body.has_key? 'error'
+      if JSON.parse(response.body).has_key? 'error'
         raise APIError
       end
       # Stores response from the API into a variable and parses it as json
@@ -51,7 +51,7 @@ module Api
     # GET request
     begin
       response = HTTParty.get("#{@configs['API_BASE_URL']}?key=#{@api_key}&action=status&order=#{order_id}")
-      if response.body.has_key?('error')
+      if JSON.parse(response.body).has_key?('error')
         raise APIError
       end
       # Stores response from API into a variable and parses it as json
