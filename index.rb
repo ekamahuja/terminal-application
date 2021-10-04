@@ -7,7 +7,7 @@ begin
     require "httparty"
     require "dotenv"
 rescue  LoadError
-    puts "Please install all required gems via running 'bundle install'"
+    puts "Please install all required gems by running 'bash start.sh'"
     exit(1)
 end
 
@@ -24,8 +24,6 @@ require_relative "./classes/order"
 include Menu
 include Utils
 include Api
-
-# Load System Config
 
 
 # Variables for system
