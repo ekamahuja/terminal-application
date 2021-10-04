@@ -41,7 +41,7 @@
 ---
 ## Help Documentation
 
-### Steps To Install Documentation
+### Steps To Install
     - Ruby is required
     - Longest Ruby is installed and the device has a valid internet connection, the user can run the start.sh (by running 'bash start.sh') to take of everything; Install gems, making sure all database files exisit and are valid, .env exisits with a valid api key
     - Make sure there is a valid API key from topnotchgrowth.com in an .env file in the root directory (If you do not have one, a sample one will be crated when running 'bash start.sh')
