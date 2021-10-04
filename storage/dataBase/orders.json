@@ -9,8 +9,8 @@
     "quantity": 50,
     "status": "pending",
     "start_count": null,
-    "remains": 50,
-    "charge": 0,
+    "remains": null,
+    "charge": "0.00",
     "currency": "usd"
   },
   {
@@ -25,6 +25,20 @@
     "start_count": null,
     "remains": 40,
     "charge": 0,
+    "currency": "usd"
+  },
+  {
+    "user_id": 2,
+    "order_id": 3,
+    "provider_order_id": 30071,
+    "service_id": 374,
+    "service_name": "🔗 API TEST [NO CREDIT REQUIRED]",
+    "link": "link.com",
+    "quantity": 5,
+    "status": "pending",
+    "start_count": null,
+    "remains": null,
+    "charge": "0.00",
     "currency": "usd"
   }
 ]
