@@ -35,12 +35,14 @@ module Utils
     end
   end
 
-  # Stores fetched services into services.json as cache
+  # Stores fetched services into services.json as cache (refreshed everytime a new order method is called)
   def Utils.store_services(service_data)
     file = File.open(@configs['SERVICES'], 'w')
     file << service_data
   end
 
+
+  # Saves the orders data into orders.json
   def Utils.store_order(order_data)
     file_path = @configs['ORDERS']
     if File.exist? file_path
@@ -57,7 +59,7 @@ module Utils
     end
   end
 
-  # Fetches all registred accounts
+  # Fetches all stored registred accounts (from accounts.json)
   def Utils.fetch_accounts
     file_path = @configs['ACCOUNTS']
 
@@ -74,6 +76,7 @@ module Utils
     end
   end
 
+  # Fetches all stored orders (from orders.json)
   def Utils.fetch_orders
     file_path = @configs['ORDERS']
 
@@ -90,7 +93,7 @@ module Utils
     end
   end
 
-  # get all the services from store
+  # Get all the services from store
   def Utils.get_services(ids_to_fetch)
     all_services = JSON.parse(File.read(@configs['SERVICES']))
     matching_services = []
@@ -102,15 +105,17 @@ module Utils
     return matching_services
   end
 
-  # gets the total accounts available in store
+  # Gets the total accounts available in store
   def Utils.get_amount_of_accounts
     return Utils.fetch_accounts.length
   end
 
+  # Returns the amount of current orders in orders.json
   def Utils.get_amount_of_orders
     return Utils.fetch_orders.length
   end
 
+  # Returns the provider_id back with the given order_id
   def Utils.get_provider_id(user_order_id)
     orders = Utils.fetch_orders
     orders.each do |order|
